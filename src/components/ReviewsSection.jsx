@@ -39,7 +39,7 @@ const ReviewsSection = () => {
               patients
             </Typography>
           </Stack>
-          <ReviewTextBox data={data.reviews} />
+          <ReviewTextBox data={data?.reviews} />
         </Stack>
       </Stack>
     </Box>

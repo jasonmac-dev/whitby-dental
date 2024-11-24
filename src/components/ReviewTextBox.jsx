@@ -2,7 +2,7 @@ import { useTheme } from "@emotion/react";
 import { Box, Typography, Rating, Stack, useMediaQuery } from "@mui/material";
 
 const ReviewTextBox = (props) => {
-  const reviews = props.data;
+  const reviews = props.data || [];
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const capitalizeFirstLetter = (val) => {
@@ -22,7 +22,7 @@ const ReviewTextBox = (props) => {
         gap={2}
         width="100%"
       >
-        {reviews.slice(0, 2).map((review, index) => (
+        {reviews && reviews.slice(0, 2).map((review, index) => (
           <Box
             key={index}
             bgcolor={"#F4F6F3"}
