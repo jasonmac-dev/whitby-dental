@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Rating, Box, Typography } from "@mui/material";
 
 const RatingBox = () => {
+  // eslint-disable-next-line
   const [reviews, setReviews] = useState([]);
   const [averageRating, setAverageRating] = useState(0);
 
@@ -62,6 +63,7 @@ const RatingBox = () => {
         .catch((error) => console.error("Error fetching reviews:", error));
     }
   }, []);
+
   return (
     <Box
       sx={{
