@@ -39,28 +39,39 @@ const RatingBox = () => {
     const cachedData = getFromCache("googleReviews");
 
     if (cachedData) {
+      // Use cached data
       setReviews(cachedData.reviews);
       setAverageRating(cachedData.rating);
     } else {
-      fetch(
-        `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews,rating&key=${apiKey}`
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.result) {
-            console.log(data);
-            setReviews(data.result.reviews || []);
-            setAverageRating(data.result.rating || 0);
+      // Fetch reviews using Google PlacesService
+      const fetchReviews = () => {
+        const map = new window.google.maps.Map(document.createElement("div"));
+        const service = new window.google.maps.places.PlacesService(map);
 
-            // Cache the data with expiry
-            saveToCache(
-              "googleReviews",
-              { reviews: data.result.reviews, rating: data.result.rating },
-              CACHE_DURATION
-            );
+        service.getDetails(
+          { placeId, fields: ["reviews", "rating"] },
+          (place, status) => {
+            if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+              const reviews = place.reviews || [];
+              const rating = place.rating || 0;
+
+              setReviews(reviews);
+              setAverageRating(rating);
+
+              // Cache the fetched data
+              saveToCache("googleReviews", { reviews, rating }, CACHE_DURATION);
+            } else {
+              console.error("Failed to fetch reviews:", status);
+            }
           }
-        })
-        .catch((error) => console.error("Error fetching reviews:", error));
+        );
+      };
+
+      if (window.google && window.google.maps) {
+        fetchReviews();
+      } else {
+        console.error("Google Maps JavaScript API not loaded.");
+      }
     }
   }, []);
 
