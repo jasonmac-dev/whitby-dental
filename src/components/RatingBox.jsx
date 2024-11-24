@@ -33,7 +33,6 @@ const RatingBox = () => {
 
   useEffect(() => {
     const placeId = "ChIJexkE0pgf1YkRKqxX-3ynCec";
-    const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
     const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
     const cachedData = getFromCache("googleReviews");
