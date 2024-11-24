@@ -93,16 +93,17 @@ const Home = () => {
       <Box
         sx={{
           backgroundColor: "#E3E5E1",
-          height: "60vh",
+          height: "fit-content",
           display: "flex",
-          flexDirection: "row",
-          px: "13vw",
+          flexDirection: isMobile? "column":"row",
+          px: "10vw",
           py: "40px",
+
         }}
       >
-        <Stack width={"40%"} flex={1}>
+        <Stack width={isMobile?"100%" :"40%"} flex={1} justifyContent={"center"}>
           <ImageList
-            sx={{ width: "30vw", height: "55vh", borderRadius: "20px" }}
+            sx={{ width:isMobile? "100%":"30vw", height: "55vh", borderRadius: "20px" }}
             cols={2}
           >
             <ImageListItem rows={3}>
@@ -136,7 +137,7 @@ const Home = () => {
           </ImageList>
         </Stack>
         <Stack
-          width={"60%"}
+          width={isMobile? "100%":"60%"}
           pt="5vh"
           direction={"column"}
           gap={"3vh"}
