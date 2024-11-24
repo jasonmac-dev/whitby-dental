@@ -123,7 +123,7 @@ const Header = () => {
 const getStyles = (theme) => ({
   layout: {
     height: "10vh",
-    width: "100vw",
+    width: "100%",
     backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",

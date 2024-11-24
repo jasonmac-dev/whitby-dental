@@ -8,7 +8,7 @@ import {
   ImageListItem,
   Icon,
 } from "@mui/material";
-import Header, { RatingBox } from "../components";
+import Header, { RatingBox, ReviewsSection } from "../components";
 import { useTheme } from "@emotion/react";
 import GoogleMapReact from "google-map-react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -90,20 +90,28 @@ const Home = () => {
           </Box>
         </Box>
       </Box>
+      <ReviewsSection />
       <Box
         sx={{
           backgroundColor: "#E3E5E1",
           height: "fit-content",
           display: "flex",
-          flexDirection: isMobile? "column":"row",
+          flexDirection: isMobile ? "column" : "row",
           px: "10vw",
           py: "40px",
-
         }}
       >
-        <Stack width={isMobile?"100%" :"40%"} flex={1} justifyContent={"center"}>
+        <Stack
+          width={isMobile ? "100%" : "40%"}
+          flex={1}
+          justifyContent={"center"}
+        >
           <ImageList
-            sx={{ width:isMobile? "100%":"30vw", height: "55vh", borderRadius: "20px" }}
+            sx={{
+              width: isMobile ? "100%" : "30vw",
+              height: "55vh",
+              borderRadius: "20px",
+            }}
             cols={2}
           >
             <ImageListItem rows={3}>
@@ -137,7 +145,7 @@ const Home = () => {
           </ImageList>
         </Stack>
         <Stack
-          width={isMobile? "100%":"60%"}
+          width={isMobile ? "100%" : "60%"}
           pt="5vh"
           direction={"column"}
           gap={"3vh"}
@@ -203,10 +211,10 @@ const Home = () => {
       </Box>
       <Box
         height={"30vh"}
-        width={"80%"}
+        width={"79.85%"}
         pb={"10vw"}
         px="10vw"
-        bgcolor="#E3E5E1"
+        sx={{ bgcolor: (theme) => theme.palette.custom.Primary2 }}
       >
         <GoogleMapReact
           bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}

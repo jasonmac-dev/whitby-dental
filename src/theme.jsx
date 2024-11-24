@@ -111,6 +111,11 @@ const theme = createTheme({
       primary: "#ffffff", // Default text color
       secondary: "#cccccc", // Secondary text color
     },
+    custom: {
+      Primary1: "white",
+      Primary2: "#E3E5E1",
+      textFaded: "#052639"
+    },
   },
   components: {
     MuiTypography: {
