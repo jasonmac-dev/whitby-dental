@@ -63,7 +63,6 @@ const ReviewTextBox = (props) => {
                 key={index}
                 bgcolor={"#F4F6F3"}
                 borderRadius={"10px"}
-                height={"15vh"}
                 width={isMobile ? "auto" : "40%"}
                 padding={2}
                 boxShadow="0px 4px 10px rgba(0, 0, 0, 0.1)"
@@ -127,7 +126,6 @@ const ReviewTextBox = (props) => {
                 key={index}
                 bgcolor={"#F4F6F3"}
                 borderRadius={"10px"}
-                height={"15vh"}
                 width={isMobile ? "auto" : "40%"}
                 padding={2}
                 boxShadow="0px 4px 10px rgba(0, 0, 0, 0.1)"
