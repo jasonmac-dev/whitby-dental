@@ -13,11 +13,18 @@ import { useTheme } from "@emotion/react";
 import GoogleMapReact from "google-map-react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
+import { useGoogleMaps } from "../context/GoogleMapsContext";
+
 const Home = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const defaultCenter = { lat: 43.883436580934536, lng: -78.94318945767206 };
   const defaultZoom = 17;
+  const { setMap, setMaps } = useGoogleMaps();
+  const handleApiLoaded = ({ map, maps }) => {
+    setMap(map);
+    setMaps(maps); 
+  };
 
   const Marker = ({ lat, lng, text }) => (
     <div
@@ -217,9 +224,11 @@ const Home = () => {
         sx={{ bgcolor: (theme) => theme.palette.custom.Primary2 }}
       >
         <GoogleMapReact
-          bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
+          bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,libraries: "places", }}
           defaultCenter={defaultCenter}
           defaultZoom={defaultZoom}
+          yesIWantToUseGoogleMapApiInternals
+          onGoogleApiLoaded={handleApiLoaded}
         >
           <Marker lat={43.883436580934536} lng={-78.94318945767206} />
         </GoogleMapReact>

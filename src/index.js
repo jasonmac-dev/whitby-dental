@@ -3,13 +3,13 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme";
-import { GoogleMapsLoader } from "./components";
+import { GoogleMapsProvider } from "./context/GoogleMapsContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <GoogleMapsLoader>
+  <GoogleMapsProvider>
     <ThemeProvider theme={theme}>
       <App />
     </ThemeProvider>
-  </GoogleMapsLoader>
+  </GoogleMapsProvider>
 );

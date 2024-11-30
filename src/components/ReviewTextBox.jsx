@@ -8,8 +8,8 @@ import {
   Skeleton,
 } from "@mui/material";
 
-const ReviewTextBox = (props) => {
-  const reviews =props.data || [];
+const ReviewTextBox = ({ data, loading }) => {
+  const reviews = data || [];
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const capitalizeFirstLetter = (val) => {
@@ -19,7 +19,7 @@ const ReviewTextBox = (props) => {
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
   };
-
+  console.log(reviews)
   const SkeletonBox = () => (
     <Box
       bgcolor={"#F4F6F3"}
@@ -57,7 +57,7 @@ const ReviewTextBox = (props) => {
         gap={2}
         width="100%"
       >
-        {reviews.length > 0
+        {!loading > 0
           ? reviews.slice(0, 2).map((review, index) => (
               <Box
                 key={index}
@@ -120,7 +120,7 @@ const ReviewTextBox = (props) => {
           color: (theme) => theme.palette.custom.textFaded,
         }}
       >
-        {reviews.length > 0
+        {!loading
           ? reviews.slice(2, 4).map((review, index) => (
               <Box
                 key={index}

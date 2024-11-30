@@ -1,43 +1,11 @@
 import { Box, Stack, Typography, useMediaQuery } from "@mui/material";
 import ReviewTextBox from "./ReviewTextBox";
 import { useTheme } from "@emotion/react";
-import { useEffect,useState } from "react";
+import { useGoogleMaps } from "../context/GoogleMapsContext";
 const ReviewsSection = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const CACHE_CHECK_INTERVAL = 1000;
-  const [data, setData] = useState(null);
-
-  const getFromCache = (key) => {
-    const cachedData = localStorage.getItem(key);
-
-    if (cachedData) {
-      const { value, expiry } = JSON.parse(cachedData);
-
-      // Check if the cache has expired
-      if (Date.now() > expiry) {
-        localStorage.removeItem(key); // Clear expired cache
-        return null; // Indicate that the cache is invalid
-      }
-      return value; // Return cached value if valid
-    }
-
-    return null; // No cache exists
-  };
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      const cachedData = getFromCache("googleReviews");
-      console.log("Checking cache:", cachedData);
-
-      if (cachedData) {
-        setData(cachedData); // Update the state with cached data
-        clearInterval(intervalId); // Stop checking once data is found
-      }
-    }, CACHE_CHECK_INTERVAL);
-
-    return () => clearInterval(intervalId); // Cleanup on component unmount
-  }, []);
+  const { reviews, loading } = useGoogleMaps();
   return (
     <Box backgroundColor="#fff0">
       <Stack direction={"column"}>
@@ -56,7 +24,7 @@ const ReviewsSection = () => {
               patients
             </Typography>
           </Stack>
-          <ReviewTextBox data={data?.reviews} />
+          <ReviewTextBox data={reviews} loading={loading}/>
         </Stack>
       </Stack>
     </Box>
