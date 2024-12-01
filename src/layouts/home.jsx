@@ -7,6 +7,7 @@ import {
   ImageList,
   ImageListItem,
   Icon,
+
 } from "@mui/material";
 import Header, { RatingBox, ReviewsSection } from "../components";
 import { useTheme } from "@emotion/react";
@@ -15,17 +16,20 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import { useGoogleMaps } from "../context/GoogleMapsContext";
 
+
 const Home = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const defaultCenter = { lat: 43.883436580934536, lng: -78.94318945767206 };
   const defaultZoom = 17;
   const { setMap, setMaps } = useGoogleMaps();
+  
+
   const handleApiLoaded = ({ map, maps }) => {
     setMap(map);
-    setMaps(maps); 
+    setMaps(maps);
   };
-
+    
   const Marker = ({ lat, lng, text }) => (
     <div
       style={{
@@ -55,15 +59,15 @@ const Home = () => {
         sx={{
           display: "flex",
           backgroundImage:
-            "url(https://whitbydentalclinic.com/wp-content/uploads/home.jpg)",
+            "url(/images/home.jpg)",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
           height: isMobile ? "500px" : "80vh",
           flexDirection: "column",
         }}
+      
       >
-        <Header />
         <Box
           display={"flex"}
           alignItems={"left"}
@@ -123,28 +127,28 @@ const Home = () => {
           >
             <ImageListItem rows={3}>
               <img
-                src={`https://whitbydentalclinic.com/wp-content/uploads/chair-2584260_1920.jpg`}
+                src={`/images/chair-2584260_1920.jpg`}
                 loading="lazy"
                 alt=""
               />
             </ImageListItem>
             <ImageListItem rows={3}>
               <img
-                src={`https://whitbydentalclinic.com/wp-content/uploads/chair-2584260_1920.jpg`}
+                src={`/images/chair-2584260_1920.jpg`}
                 loading="lazy"
                 alt=""
               />
             </ImageListItem>
             <ImageListItem rows={2}>
               <img
-                src={`https://whitbydentalclinic.com/wp-content/uploads/chair-2584260_1920.jpg`}
+                src={`/images/chair-2584260_1920.jpg`}
                 loading="lazy"
                 alt=""
               />
             </ImageListItem>
             <ImageListItem rows={2}>
               <img
-                src={`https://whitbydentalclinic.com/wp-content/uploads/chair-2584260_1920.jpg`}
+                src={`/images/chair-2584260_1920.jpg`}
                 loading="lazy"
                 alt=""
               />
@@ -170,7 +174,7 @@ const Home = () => {
               <Icon fontSize="large" sx={{ overflow: "unset" }}>
                 <LocationOnIcon />
               </Icon>
-              <Typography color="black" mt={0.5}>
+              <Typography color="black" mt={isMobile ? 1 :0.5}>
                 {textOverview.location}
               </Typography>
             </Box>
@@ -199,7 +203,7 @@ const Home = () => {
               <Icon fontSize="large" sx={{ overflow: "unset" }}>
                 <AccessTimeFilledIcon />
               </Icon>
-              <Typography color="black" mt={0.5}>
+              <Typography color="black" mt={isMobile ? 1 :0.5}>
                 Monday: 9:15am – 4:00pm <br /> Tuesday: 11:00am – 7:00pm <br />
                 Wednesday - Thursday: 9:15am – 4:00pm <br /> Friday: Closed{" "}
                 <br />
@@ -224,7 +228,10 @@ const Home = () => {
         sx={{ bgcolor: (theme) => theme.palette.custom.Primary2 }}
       >
         <GoogleMapReact
-          bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,libraries: "places", }}
+          bootstrapURLKeys={{
+            key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+            libraries: "places",
+          }}
           defaultCenter={defaultCenter}
           defaultZoom={defaultZoom}
           yesIWantToUseGoogleMapApiInternals

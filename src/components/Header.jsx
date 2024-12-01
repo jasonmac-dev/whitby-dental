@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   Box,
   Button,
@@ -10,43 +10,88 @@ import {
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useLocation, useNavigate} from "react-router-dom";
 
 const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
   const styles = getStyles(theme);
+  const location = useLocation();
+  const nav = useNavigate()
+  const handleScroll = useCallback(() => {
+    if (!isMobile) {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY < lastScrollY) {
+        setIsHidden(false); // Show navbar
+      } else if (
+        currentScrollY > lastScrollY &&
+        currentScrollY > window.innerHeight * 0.3
+      ) {
+        setIsHidden(true); // Hide navbar
+      }
+
+      setLastScrollY(currentScrollY);
+    }
+  }, [lastScrollY, isMobile]); // Dependency array includes lastScrollY
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  const handleClick = (props) => {
+    nav(props)
+  }
   const imageUrl =
-    "https://whitbydentalclinic.com/wp-content/uploads/whitby-dental-clinic-logo.png";
+    "/images/whitby-dental-clinic-logo.png";
   const drawerContent = (
     <Box sx={{ width: 250 }}>
       <Stack direction="column" spacing={2} sx={{ p: 2, mt: "10%" }}>
         <Button sx={styles.buttonDrawer}>Home</Button>
         <Button sx={styles.buttonDrawer}>About</Button>
-        <Button sx={styles.buttonDrawer}>Canadian Dental Care Plan (CDCP)</Button>
+        <Button sx={styles.buttonDrawer}>
+          Canadian Dental Care Plan (CDCP)
+        </Button>
         <Button sx={styles.buttonDrawer}>SERVICES</Button>
         <Button sx={styles.buttonDrawer}>CONTACT</Button>
         <Button
-              sx={{
-                backgroundColor: "rgba(255, 0, 0)",
-                "&:hover": {
-                  backgroundColor: "rgba(255, 0, 0, 0.8)", // Slightly faded red on hover
-                },
-              }}
-            >
-              <Typography variant="button" sx={{textWrapMode:"nowrap"}}>BOOK ONLINE</Typography>
-            </Button>
+          sx={{
+            backgroundColor: "rgba(255, 0, 0)",
+            "&:hover": {
+              backgroundColor: "rgba(255, 0, 0, 0.8)", // Slightly faded red on hover
+            },
+          }}
+        >
+          <Typography variant="button" sx={{ textWrapMode: "nowrap" }}>
+            BOOK ONLINE
+          </Typography>
+        </Button>
       </Stack>
     </Box>
   );
   return (
-    <Box sx={[styles.layout, isMobile && { backgroundSize: "contain" }]}>
+    <Box
+      sx={[
+        styles.layout,
+        isMobile && { backgroundSize: "contain", position: "relative" },
+      ]}
+    >
       {!isMobile ? (
         <Stack
           direction={"row"}
           width={"100%"}
           justifyContent={"center"}
           alignItems={"center"}
+          position={"sticky"}
+          sx={{
+            top: 0,
+            transform: isHidden ? "translateY(-100%)" : "translateY(0)",
+            transition: "transform 0.3s ease-in-out",
+          }}
         >
           <Stack
             direction={"row"}
@@ -54,9 +99,25 @@ const Header = () => {
             justifyContent={"flex-end"}
             gap={"15%"}
           >
-            <Button sx={styles.button}>Home</Button>
+            <Button
+              sx={[
+                styles.button,
+                location.pathname === "/" && { color: "black !important" },
+              ]}
+              onClick={() => handleClick('/')}
+            >
+              Home
+            </Button>
 
-            <Button sx={styles.button}>About</Button>
+            <Button
+               sx={[
+                styles.button,
+                location.pathname == "/About" && { color: "black !important" },
+              ]}
+              onClick={() => handleClick('About')}
+            >
+              About
+            </Button>
 
             <Button sx={[styles.button, { mr: "10%" }]}>
               Canadian Dental Care Plan (CDCP)
@@ -84,7 +145,9 @@ const Header = () => {
                 },
               }}
             >
-              <Typography variant="button" sx={{textWrapMode:"nowrap"}}>BOOK ONLINE</Typography>
+              <Typography variant="button" sx={{ textWrapMode: "nowrap" }}>
+                BOOK ONLINE
+              </Typography>
             </Button>
           </Stack>
         </Stack>
@@ -127,6 +190,7 @@ const getStyles = (theme) => ({
     backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
+    position: "fixed",
   },
   image: {
     width: "200px",
@@ -139,15 +203,16 @@ const getStyles = (theme) => ({
   button: {
     alignitems: "center",
     height: "40px",
-    color: "black",
+    color: "#BC0821",
+    fontWeight: "600",
   },
   buttonDrawer: {
     alignitems: "center",
     height: "40px",
     color: "black",
-    paddingBottom:"10px",
+    paddingBottom: "10px",
     borderRadius: "0",
-    borderBottom: "1px rgb(0,0,0,0.2) solid"
-  }
+    borderBottom: "1px rgb(0,0,0,0.2) solid",
+  },
 });
 export default Header;
