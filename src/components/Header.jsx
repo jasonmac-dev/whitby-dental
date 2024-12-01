@@ -10,7 +10,8 @@ import {
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useLocation, useNavigate} from "react-router-dom";
+import CloseIcon from '@mui/icons-material/Close';
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -20,7 +21,7 @@ const Header = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
   const styles = getStyles(theme);
   const location = useLocation();
-  const nav = useNavigate()
+  const nav = useNavigate();
   const handleScroll = useCallback(() => {
     if (!isMobile) {
       const currentScrollY = window.scrollY;
@@ -44,10 +45,9 @@ const Header = () => {
   }, [handleScroll]);
 
   const handleClick = (props) => {
-    nav(props)
-  }
-  const imageUrl =
-    "/images/whitby-dental-clinic-logo.png";
+    nav(props);
+  };
+  const imageUrl = "/images/whitby-dental-clinic-logo.png";
   const drawerContent = (
     <Box sx={{ width: 250 }}>
       <Stack direction="column" spacing={2} sx={{ p: 2, mt: "10%" }}>
@@ -77,7 +77,7 @@ const Header = () => {
     <Box
       sx={[
         styles.layout,
-        isMobile && { backgroundSize: "contain", position: "relative" },
+        isMobile && { backgroundSize: "contain", position: "absolute" },
       ]}
     >
       {!isMobile ? (
@@ -104,17 +104,17 @@ const Header = () => {
                 styles.button,
                 location.pathname === "/" && { color: "black !important" },
               ]}
-              onClick={() => handleClick('/')}
+              onClick={() => handleClick("/")}
             >
               Home
             </Button>
 
             <Button
-               sx={[
+              sx={[
                 styles.button,
                 location.pathname === "/About" && { color: "black !important" },
               ]}
-              onClick={() => handleClick('About')}
+              onClick={() => handleClick("About")}
             >
               About
             </Button>
@@ -165,7 +165,7 @@ const Header = () => {
           <IconButton
             color="Black"
             edge="end"
-            sx={{ zIndex: "10000", position: "absolute", right: "0", mr: "0" }}
+            sx={{ zIndex: "100", position: "fixed", right: "0", mr: "0" }}
             onClick={() => setDrawerOpen(!drawerOpen)}
           >
             <MenuIcon fontSize="large" />
@@ -175,7 +175,26 @@ const Header = () => {
             open={drawerOpen}
             onClose={() => setDrawerOpen(!drawerOpen)}
           >
-            {drawerContent}
+            <Box
+              sx={{
+                width: "250px", // Adjust based on your design
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              {/* Close Button */}
+              <IconButton
+                color="Black"
+                sx={{ position: "fixed", top:0, right:0 }} // Align to top-right
+                onClick={() => setDrawerOpen(false)}
+  
+              >
+                <CloseIcon fontSize="large" />
+              </IconButton>
+
+              {/* Drawer Content */}
+              {drawerContent}
+            </Box>
           </Drawer>
         </>
       )}
