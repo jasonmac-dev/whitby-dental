@@ -1,3 +1,4 @@
+
 import {
   Box,
   Typography,
@@ -38,7 +39,7 @@ const Home = () => {
       }}
     >
       <img
-        src="https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2.png"
+        src="/images/spotlight-poi2.webp"
         alt={text}
         style={{
           height: "40px",
@@ -56,16 +57,20 @@ const Home = () => {
   return (
     <Box>
       <Box
+        role="img"
+        aria-label="Family Smiling"
         sx={{
           display: "flex",
+          background: "linear-gradient(to bottom, #e0e0e0, #f5f5f5)", // Fallback gradient
           backgroundImage:
-            "url(/images/home.jpg)",
+            "url(/images/home.webp)",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
           height: isMobile ? "500px" : "80vh",
           flexDirection: "column",
         }}
+        
       
       >
         <Box
@@ -127,30 +132,30 @@ const Home = () => {
           >
             <ImageListItem rows={3}>
               <img
-                src={`/images/chair-2584260_1920.jpg`}
+                src={`/images/chair-2584260_1920.webp`}
                 loading="lazy"
-                alt=""
+                alt="placeholder"
               />
             </ImageListItem>
             <ImageListItem rows={3}>
               <img
-                src={`/images/chair-2584260_1920.jpg`}
+                src={`/images/chair-2584260_1920.webp`}
                 loading="lazy"
-                alt=""
+                alt="placeholder"
               />
             </ImageListItem>
             <ImageListItem rows={2}>
               <img
-                src={`/images/chair-2584260_1920.jpg`}
+                src={`/images/chair-2584260_1920.webp`}
                 loading="lazy"
-                alt=""
+                alt="placeholder"
               />
             </ImageListItem>
             <ImageListItem rows={2}>
               <img
-                src={`/images/chair-2584260_1920.jpg`}
+                src={`/images/chair-2584260_1920.webp`}
                 loading="lazy"
-                alt=""
+                alt="placeholder"
               />
             </ImageListItem>
           </ImageList>
@@ -237,7 +242,7 @@ const Home = () => {
           yesIWantToUseGoogleMapApiInternals
           onGoogleApiLoaded={handleApiLoaded}
         >
-          <Marker lat={43.883436580934536} lng={-78.94318945767206} />
+          <Marker lat={43.883436580934536} lng={-78.94318945767206} text={"Marker"}/>
         </GoogleMapReact>
       </Box>
     </Box>

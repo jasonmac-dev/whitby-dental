@@ -131,7 +131,7 @@ const Header = () => {
               justifyContent: "center",
             }}
           >
-            <img src={imageUrl} style={styles.image} alt="Logo" />
+            <img src={imageUrl} style={styles.image} alt="Whitby Dental Logo" />
           </Box>
           <Stack direction={"row"} width={"42vw"} gap={"20%"}>
             <Button sx={[styles.button, { ml: "10%" }]}>SERVICES</Button>
@@ -159,13 +159,14 @@ const Header = () => {
             justifyContent="center"
             width="100%"
           >
-            <img src={imageUrl} style={styles.imageMobile} alt="" />
+            <img src={imageUrl} style={styles.imageMobile} alt="Whitby Dental Logo" />
           </Box>
 
           <IconButton
             color="Black"
             edge="end"
             sx={{ zIndex: "100", position: "fixed", right: "0", mr: "0" }}
+            aria-label="Toggle drawer"
             onClick={() => setDrawerOpen(!drawerOpen)}
           >
             <MenuIcon fontSize="large" />
@@ -177,17 +178,16 @@ const Header = () => {
           >
             <Box
               sx={{
-                width: "250px", // Adjust based on your design
+                width: "250px", 
                 display: "flex",
                 flexDirection: "column",
               }}
             >
-              {/* Close Button */}
               <IconButton
                 color="Black"
-                sx={{ position: "fixed", top:0, right:0 }} // Align to top-right
+                sx={{ position: "fixed", top:0, right:0 }} 
                 onClick={() => setDrawerOpen(false)}
-  
+                aria-label="Toggle drawer close"
               >
                 <CloseIcon fontSize="large" />
               </IconButton>

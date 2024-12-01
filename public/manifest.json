@@ -1,15 +1,13 @@
 {
   "short_name": "Whitby Dental",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    }
-  ],
+  "name": "Whitby Dental Clinic",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "orientation": "portrait",
+  "description": "Your trusted dental clinic in Whitby, providing exceptional oral care for all ages.",
+  "scope": "./",
+  "categories": ["health", "services", "clinic", "dental"],
+  "lang": "en-CA"
 }

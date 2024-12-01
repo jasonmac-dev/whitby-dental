@@ -91,6 +91,11 @@ const ReviewTextBox = ({ data, loading }) => {
         flexDirection={!isMobile ? "row" : "column"}
         gap={2}
         width="100%"
+        sx={{
+          userSelect:"none",
+          MozUserSelect:"none",
+          msUserSelect: "none"
+        }}
       >
         {!loading > 0
           ? reviews.slice(0, 2).map((review, index) => (
@@ -167,6 +172,11 @@ const ReviewTextBox = ({ data, loading }) => {
                 boxShadow="0px 4px 10px rgba(0, 0, 0, 0.1)"
                 display={"flex"}
                 flexDirection={"column"}
+                sx={{
+                  userSelect:"none",
+                  MozUserSelect:"none",
+                  msUserSelect: "none"
+                }}
               >
                 <Rating
                   value={review?.rating}
