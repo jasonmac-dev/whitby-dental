@@ -1,4 +1,4 @@
-import Header from "../components";
+
 
 
 const About = () =>{

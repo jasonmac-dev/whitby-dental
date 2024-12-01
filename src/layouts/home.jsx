@@ -9,7 +9,7 @@ import {
   Icon,
 
 } from "@mui/material";
-import Header, { RatingBox, ReviewsSection } from "../components";
+import { RatingBox, ReviewsSection } from "../components";
 import { useTheme } from "@emotion/react";
 import GoogleMapReact from "google-map-react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";

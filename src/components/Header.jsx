@@ -112,7 +112,7 @@ const Header = () => {
             <Button
                sx={[
                 styles.button,
-                location.pathname == "/About" && { color: "black !important" },
+                location.pathname === "/About" && { color: "black !important" },
               ]}
               onClick={() => handleClick('About')}
             >
