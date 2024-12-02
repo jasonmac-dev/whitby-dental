@@ -106,7 +106,7 @@ const theme = createTheme({
       fontFamily: "'Karla',Helvetica,Arial,Lucida,sans-serif",
     },
     subHeading: {
-      fontSize: "1rem",
+      fontSize: "1.5rem",
       fontWeight: 700,
       lineHeight: 1.3,
       [`@media (min-width:600px)`]: {

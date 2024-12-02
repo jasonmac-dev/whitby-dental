@@ -155,7 +155,7 @@ const Home = () => {
         </Stack>
         <Stack
           width={isMobile ? "100%" : "60%"}
-          pt="5vh"
+          pt={isMobile ? "2vh" : "5vh"}
           direction={"column"}
           gap={"3vh"}
           height={"80%"}

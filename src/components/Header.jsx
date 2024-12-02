@@ -47,6 +47,7 @@ const Header = () => {
 
   const handleClick = (props) => {
     nav(props);
+    setDrawerOpen(false)
   };
   const imageUrl = "/images/whitby-dental-clinic-logo.webp";
   const drawerContent = (
@@ -56,8 +57,8 @@ const Header = () => {
       aria-describedby="A navigation element for the home page"
     >
       <Stack direction="column" spacing={2} sx={{ p: 2, mt: "10%" }}>
-        <Button sx={styles.buttonDrawer}>Home</Button>
-        <Button sx={styles.buttonDrawer}>About</Button>
+        <Button sx={styles.buttonDrawer} onClick={() => handleClick("/")}>Home</Button>
+        <Button sx={styles.buttonDrawer} onClick={() => handleClick("/About")}>About</Button>
         <Button sx={styles.buttonDrawer}>
           Canadian Dental Care Plan (CDCP)
         </Button>
