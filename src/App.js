@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home, {About} from "./layouts";
+import Home, {About} from "./pages";
 import PageTitleUpdater from "./helpers";
 import Header from "./components";
 
