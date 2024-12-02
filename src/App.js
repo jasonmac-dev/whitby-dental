@@ -4,15 +4,21 @@ import PageTitleUpdater from "./helpers";
 import Header from "./components";
 
 const App = () => {
+
+  const routesConfig = [
+    { path: '/', element: <Home />, name: 'Home' },
+    { path: '/about', element: <About />, name: 'About' },
+  ];
+  
   return (
     <>
       <Router>
         <PageTitleUpdater />
         <Header />
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} /> Route for About page
-            {/* <Route path="/contact" element={<Contact />} /> Route for Contact page */}
+          {routesConfig.map(({ path, element }, index) => (
+          <Route key={index} path={path} element={element} />
+        ))}
           </Routes>
       </Router>
     </>

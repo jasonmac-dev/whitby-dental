@@ -1,4 +1,3 @@
-
 import {
   Box,
   Typography,
@@ -8,7 +7,6 @@ import {
   ImageList,
   ImageListItem,
   Icon,
-
 } from "@mui/material";
 import { RatingBox, ReviewsSection } from "../components";
 import { useTheme } from "@emotion/react";
@@ -17,20 +15,18 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import { useGoogleMaps } from "../context/GoogleMapsContext";
 
-
 const Home = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const defaultCenter = { lat: 43.883436580934536, lng: -78.94318945767206 };
   const defaultZoom = 17;
   const { setMap, setMaps } = useGoogleMaps();
-  
 
   const handleApiLoaded = ({ map, maps }) => {
     setMap(map);
     setMaps(maps);
   };
-    
+
   const Marker = ({ lat, lng, text }) => (
     <div
       style={{
@@ -62,16 +58,13 @@ const Home = () => {
         sx={{
           display: "flex",
           background: "linear-gradient(to bottom, #e0e0e0, #f5f5f5)", // Fallback gradient
-          backgroundImage:
-            "url(/images/home.webp)",
+          backgroundImage: "url(/images/home.webp)",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
           height: isMobile ? "500px" : "80vh",
           flexDirection: "column",
         }}
-        
-      
       >
         <Box
           display={"flex"}
@@ -85,7 +78,7 @@ const Home = () => {
         >
           <RatingBox />
           <Typography variant="h1">WHITBY DENTAL CLINIC</Typography>
-          <Typography variant="h3">We Care About Your Smile</Typography>
+          <Typography variant="h2">We Care About Your Smile</Typography>
           <Button
             sx={{
               width: "180px",
@@ -168,7 +161,7 @@ const Home = () => {
           height={"80%"}
           flex={1}
         >
-          <Typography variant="h2" color="black">
+          <Typography variant="subHeading" color="black">
             Visit Us
           </Typography>
           <Typography variant="body1" color="black">
@@ -179,7 +172,7 @@ const Home = () => {
               <Icon fontSize="large" sx={{ overflow: "unset" }}>
                 <LocationOnIcon />
               </Icon>
-              <Typography color="black" mt={isMobile ? 1 :0.5}>
+              <Typography color="black" mt={isMobile ? 1 : 0.5}>
                 {textOverview.location}
               </Typography>
             </Box>
@@ -208,7 +201,7 @@ const Home = () => {
               <Icon fontSize="large" sx={{ overflow: "unset" }}>
                 <AccessTimeFilledIcon />
               </Icon>
-              <Typography color="black" mt={isMobile ? 1 :0.5}>
+              <Typography color="black" mt={isMobile ? 1 : 0.5}>
                 Monday: 9:15am – 4:00pm <br /> Tuesday: 11:00am – 7:00pm <br />
                 Wednesday - Thursday: 9:15am – 4:00pm <br /> Friday: Closed{" "}
                 <br />
@@ -242,7 +235,11 @@ const Home = () => {
           yesIWantToUseGoogleMapApiInternals
           onGoogleApiLoaded={handleApiLoaded}
         >
-          <Marker lat={43.883436580934536} lng={-78.94318945767206} text={"Marker"}/>
+          <Marker
+            lat={43.883436580934536}
+            lng={-78.94318945767206}
+            text={"Marker"}
+          />
         </GoogleMapReact>
       </Box>
     </Box>

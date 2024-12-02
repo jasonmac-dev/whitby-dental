@@ -92,9 +92,9 @@ const ReviewTextBox = ({ data, loading }) => {
         gap={2}
         width="100%"
         sx={{
-          userSelect:"none",
-          MozUserSelect:"none",
-          msUserSelect: "none"
+          userSelect: "none",
+          MozUserSelect: "none",
+          msUserSelect: "none",
         }}
       >
         {!loading > 0
@@ -107,6 +107,7 @@ const ReviewTextBox = ({ data, loading }) => {
                 padding={2}
                 boxShadow="0px 4px 10px rgba(0, 0, 0, 0.1)"
                 display={"flex"}
+                position={"relative"}
                 flexDirection={"column"}
                 sx={{
                   color: (theme) => theme.palette.custom.textFaded,
@@ -131,6 +132,7 @@ const ReviewTextBox = ({ data, loading }) => {
                   >
                     {review.text}
                   </Typography>
+
                   <Box>
                     <hr
                       style={{
@@ -140,9 +142,25 @@ const ReviewTextBox = ({ data, loading }) => {
                         border: "none",
                       }}
                     />
-                    <Typography variant="body2" color="black" fontWeight="bold">
-                      - {capitalizeFirstLetter(review.author_name)}
-                    </Typography>
+                    <Box sx={{ display: "flex", flexDirection: "row" }}>
+                      <Typography
+                        variant="body2"
+                        color="black"
+                        fontWeight="bold"
+                      >
+                        - {capitalizeFirstLetter(review.author_name)}
+                      </Typography>
+                      <Box
+                        component="img"
+                        src="/images/smile-cartoon.webp"
+                        alt="Tooth"
+                        sx={{
+                          width: "20px",
+                          height: "20px",
+                          ml: "10px",
+                        }}
+                      />
+                    </Box>
                   </Box>
                 </Stack>
               </Box>
@@ -173,9 +191,9 @@ const ReviewTextBox = ({ data, loading }) => {
                 display={"flex"}
                 flexDirection={"column"}
                 sx={{
-                  userSelect:"none",
-                  MozUserSelect:"none",
-                  msUserSelect: "none"
+                  userSelect: "none",
+                  MozUserSelect: "none",
+                  msUserSelect: "none",
                 }}
               >
                 <Rating
@@ -206,9 +224,25 @@ const ReviewTextBox = ({ data, loading }) => {
                         border: "none",
                       }}
                     />
-                    <Typography variant="body2" color="black" fontWeight="bold">
-                      - {capitalizeFirstLetter(review.author_name)}
-                    </Typography>
+                    <Box sx={{ display: "flex", flexDirection: "row" }}>
+                      <Typography
+                        variant="body2"
+                        color="black"
+                        fontWeight="bold"
+                      >
+                        - {capitalizeFirstLetter(review.author_name)}
+                      </Typography>
+                      <Box
+                        component="img"
+                        src="/images/smile-cartoon.webp"
+                        alt="Tooth"
+                        sx={{
+                          width: "20px",
+                          height: "20px",
+                          ml: "10px",
+                        }}
+                      />
+                    </Box>
                   </Box>
                 </Stack>
               </Box>
@@ -294,9 +328,21 @@ export const SwiperMobile = ({ reviews }) => {
                     border: "none",
                   }}
                 />
-                <Typography variant="body2" color="black" fontWeight="bold">
-                  - {capitalizeFirstLetter(review.author_name)}
-                </Typography>
+                <Box sx={{ display: "flex", flexDirection: "row" }}>
+                  <Typography variant="body2" color="black" fontWeight="bold">
+                    - {capitalizeFirstLetter(review.author_name)}
+                  </Typography>
+                  <Box
+                    component="img"
+                    src="/images/smile-cartoon.webp"
+                    alt="Tooth"
+                    sx={{
+                      width: "20px",
+                      height: "20px",
+                      ml: "10px",
+                    }}
+                  />
+                </Box>
               </Box>
             </Stack>
           </Box>
@@ -305,4 +351,5 @@ export const SwiperMobile = ({ reviews }) => {
     </Swiper>
   );
 };
+
 export default ReviewTextBox;

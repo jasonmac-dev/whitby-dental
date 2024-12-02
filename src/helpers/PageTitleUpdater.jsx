@@ -8,12 +8,12 @@ const PageTitleUpdater = () => {
     // Map routes to page titles
     const titles = {
       "/": `Home - ${siteName}`,
-      "/about": `About Us - ${siteName}`,
+      "/About": `About Us - ${siteName}`,
       "/services": `Our Services - ${siteName}`,
     };
 
     // Set the document title based on the current route
-    document.title = titles[location.pathname] || "My App";
+    document.title = titles[location.pathname] || "Whitby Dental Clinic";
   }, [location]);
 
   return null; // This component doesn't render anything

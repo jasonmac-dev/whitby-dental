@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Header = () => {
@@ -18,7 +18,8 @@ const Header = () => {
   const [isHidden, setIsHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("lg"));
   const styles = getStyles(theme);
   const location = useLocation();
   const nav = useNavigate();
@@ -47,9 +48,13 @@ const Header = () => {
   const handleClick = (props) => {
     nav(props);
   };
-  const imageUrl = "/images/whitby-dental-clinic-logo.png";
+  const imageUrl = "/images/whitby-dental-clinic-logo.webp";
   const drawerContent = (
-    <Box sx={{ width: 250 }}>
+    <Box
+      sx={{ width: 250 }}
+      role="navigation"
+      aria-describedby="A navigation element for the home page"
+    >
       <Stack direction="column" spacing={2} sx={{ p: 2, mt: "10%" }}>
         <Button sx={styles.buttonDrawer}>Home</Button>
         <Button sx={styles.buttonDrawer}>About</Button>
@@ -77,7 +82,13 @@ const Header = () => {
     <Box
       sx={[
         styles.layout,
-        isMobile && { backgroundSize: "contain", position: "absolute" },
+        isMobile && { position: "absolute" },
+        !isMobile && {
+          top: 0,
+          transform: isHidden ? "translateY(-100%)" : "translateY(0)",
+          transition: "transform 0.3s ease-in-out",
+          zIndex: "10"
+        },
       ]}
     >
       {!isMobile ? (
@@ -87,11 +98,10 @@ const Header = () => {
           justifyContent={"center"}
           alignItems={"center"}
           position={"sticky"}
-          sx={{
-            top: 0,
-            transform: isHidden ? "translateY(-100%)" : "translateY(0)",
-            transition: "transform 0.3s ease-in-out",
-          }}
+          backgroundColor={"#ffffff"}
+          
+          role="navigation"
+          aria-describedby="A navigation element for the home page"
         >
           <Stack
             direction={"row"}
@@ -119,8 +129,8 @@ const Header = () => {
               About
             </Button>
 
-            <Button sx={[styles.button, { mr: "10%" }]}>
-              Canadian Dental Care Plan (CDCP)
+            <Button sx={[styles.button, { mr: "10%", textWrap: "nowrap" }]}>
+              {!isTablet ? "Canadian Dental Care Plan (CDCP)" : "CDCP"}
             </Button>
           </Stack>
           <Box
@@ -159,7 +169,11 @@ const Header = () => {
             justifyContent="center"
             width="100%"
           >
-            <img src={imageUrl} style={styles.imageMobile} alt="Whitby Dental Logo" />
+            <img
+              src={imageUrl}
+              style={styles.imageMobile}
+              alt="Whitby Dental Logo"
+            />
           </Box>
 
           <IconButton
@@ -178,14 +192,14 @@ const Header = () => {
           >
             <Box
               sx={{
-                width: "250px", 
+                width: "250px",
                 display: "flex",
                 flexDirection: "column",
               }}
             >
               <IconButton
                 color="Black"
-                sx={{ position: "fixed", top:0, right:0 }} 
+                sx={{ position: "fixed", top: 0, right: 0 }}
                 onClick={() => setDrawerOpen(false)}
                 aria-label="Toggle drawer close"
               >
@@ -206,13 +220,10 @@ const getStyles = (theme) => ({
   layout: {
     height: "10vh",
     width: "100%",
-    backgroundSize: "contain",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    position: "fixed",
+    position: "sticky",
   },
   image: {
-    width: "200px",
+    width: "130px",
     paddingTop: "20px",
     paddingBottom: "20px",
   },

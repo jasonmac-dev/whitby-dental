@@ -16,13 +16,13 @@ const theme = createTheme({
     },
     h2: {
       fontSize: "1rem",
-      fontWeight: 700,
-      lineHeight: 1.3,
+      fontWeight: 600,
+      lineHeight: 1.4,
       [`@media (min-width:600px)`]: {
-        fontSize: "2.5rem",
+        fontSize: "1.2rem",
       },
       [`@media (min-width:960px)`]: {
-        fontSize: "3rem",
+        fontSize: "1.5",
       },
     },
     h3: {
@@ -105,6 +105,17 @@ const theme = createTheme({
       },
       fontFamily: "'Karla',Helvetica,Arial,Lucida,sans-serif",
     },
+    subHeading: {
+      fontSize: "1rem",
+      fontWeight: 700,
+      lineHeight: 1.3,
+      [`@media (min-width:600px)`]: {
+        fontSize: "2.5rem",
+      },
+      [`@media (min-width:960px)`]: {
+        fontSize: "3rem",
+      },
+    }
   },
   palette: {
     text: {
