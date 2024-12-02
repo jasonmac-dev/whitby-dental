@@ -1,5 +1,4 @@
 import { useTheme } from "@emotion/react";
-import { Padding } from "@mui/icons-material";
 import { Box, Stack, Typography, useMediaQuery } from "@mui/material";
 
 const About = () => {
