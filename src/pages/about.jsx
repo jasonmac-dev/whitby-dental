@@ -12,8 +12,8 @@ const About = () => {
         title="Whitby Dental Clinic - About"
         description="Welcome to Whitby Dental Clinic. Providing exceptional dental care for your family."
         keywords="dentist, Whitby, dental clinic, oral health, family dentistry"
-        canonical="images/whitby-dental-clinic-logo.webp"
-        image="/images/whitby-dental-clinic-logo.webp"
+        canonical="images/home.webp"
+        image="/images/home.webp"
         page="About"
       />
       <Box>
